@@ -4,11 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+var seeder = require('./app/seeder');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,6 +27,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+//connect to the db server:
+mongoose.connect('mongodb://localhost/MyApp');
+mongoose.connection.on('open', function() {
+    console.log("Connected to Mongoose...");
+
+    // check if the db is empty, if so seed it with some contacts:
+    seeder.check();
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
