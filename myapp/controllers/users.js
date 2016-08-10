@@ -3,16 +3,16 @@ var models = require('../app/models'),
 
 module.exports = {
     index: function(req, res) {
-        models.Contact.find({}, function(err, data) {
+        models.User.find({}, function(err, data) {
             res.json(data);
         });
     },
     getById: function(req, res) {
-        models.Contact.find({ _id: req.params.id }, function(err, contact) {
+        models.User.find({ _id: req.params.id }, function(err, user) {
             if (err) {
-                res.json({error: 'Contact not found.'});
+                res.json({error: 'User not found.'});
             } else {
-                res.json(contact);
+                res.json(user);
             }
         });
     }

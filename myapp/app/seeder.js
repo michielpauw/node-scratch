@@ -4,10 +4,10 @@ var mongoose = require('mongoose'),
 
 module.exports = {
     check: function() {
-        models.Contact.find({}, function(err, contacts) {
-            if (contacts.length === 0) {
-                console.log('no contacts found, seeding...');
-                var newContact = new models.Contact({
+        models.User.find({}, function(err, users) {
+            if (users.length === 0) {
+                console.log('no users found, seeding...');
+                var newUser = new models.User({
                     email: 'jkat98@gmail.com',
                     name: {
                         first: 'Jason',
@@ -16,11 +16,11 @@ module.exports = {
                     phone: '215-123-1234',
                     gravatar: md5('jkat98@gmail.com')
                 });
-                newContact.save(function(err, contact) {
-                    console.log('successfully inserted contact: ' + contact._id);
+                newUser.save(function(err, user) {
+                    console.log('successfully inserted user: ' + user._id);
                 });
 
-                newContact = new models.Contact({
+                newUser = new models.User({
                     email: 'testerson@example.com',
                     name: {
                         first: 'Steve',
@@ -29,11 +29,11 @@ module.exports = {
                     phone: '215-123-1234',
                     gravatar: md5('testerson@example.com')
                 });
-                newContact.save(function(err, contact) {
-                    console.log('successfully inserted contact: ' + contact._id);
+                newUser.save(function(err, user) {
+                    console.log('successfully inserted user: ' + user._id);
                 });
 
-                newContact = new models.Contact({
+                newUser = new models.User({
                     email: 'nancy@testerson.com',
                     name: {
                         first: 'Nancy',
@@ -42,11 +42,11 @@ module.exports = {
                     phone: '215-123-1234',
                     gravatar: md5('nancy@testerson.com')
                 });
-                newContact.save(function(err, contact) {
-                    console.log('successfully inserted contact: ' + contact._id);
+                newUser.save(function(err, user) {
+                    console.log('successfully inserted user: ' + user._id);
                 });
             } else {
-                console.log('found ' + contacts.length + ' existing contacts!');
+                console.log('found ' + users.length + ' existing users!');
             }
         });
     }

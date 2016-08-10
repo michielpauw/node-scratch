@@ -1,17 +1,10 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    ObjectId = Schema.ObjectId;
+	user = require('./schemas/user'),
+	game = require('./schemas/game');
 
-var Contact = new Schema({
-    email:      { type: String },
-    name: {
-        first:  { type: String },
-        last:   { type: String }
-    },
-    phone:      { type: String },
-    gravatar:   { type: String }
-});
+var User = user.newUser;
+var Game = game.newGame;
 
 module.exports = {
-    Contact: mongoose.model('Contact', Contact)
+    User: mongoose.model('User', User)
 };
